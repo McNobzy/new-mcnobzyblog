@@ -1,0 +1,128 @@
+{% load static %}
+
+<style>
+  
+.footer{
+  background: #333;
+  /* position: relative; */
+  height: 300px;
+  bottom: 0;
+  width: 100%;
+  padding-top: 2em;
+  padding-bottom: 2em;
+}
+
+footer p{
+  color: #fff;
+}
+
+footer .container{
+  height: 100%;
+  width: 80%;
+  /* border: 2px dashed red; */
+}
+
+footer h2{
+  font-size: 18px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.main-menu .col ul{
+  border: 0px dotted white;
+  padding: 0;
+/*   align-items: left; */
+  list-style-type: none;
+}
+
+.main-menu .col ul li{
+  line-height: 32px;
+}
+
+.social-copyright{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-basis: 150px;
+  justify-content: space-between;
+/*   border: 1px solid white; */
+  line-height: 15px;
+}
+
+.social-copyright .col{
+/*   border: 1px dashed pink; */
+  padding: 0;
+}
+
+.social-copyright .col .social{
+  list-style-type: none;
+}
+
+.social-copyright .col .social li{
+  display: inline;
+  margin-left: 10px;
+/*   margin-right: 15px; */
+}
+
+.social-copyright .copyright p{
+  font-size: 13px;
+}
+
+.col a{
+  color: #fff;
+  text-decoration: none;
+}
+
+.col a:hover{
+  color: #777;
+}
+
+   
+
+</style>
+
+<footer class="footer">
+    <!-- <div class="container main-container"> -->
+      <div class="row">
+          <div class="container">
+            <div class="row main-menu">
+              <div class="col">
+                <!-- <h2><a href="/">Mcnobzy's blog</a></h2> -->
+                <img src="{% static 'icons/png/White logo - no background.png' %}" alt="" class="logo">
+              </div>
+              <div class="col">
+                <h2>site map</h2>
+                
+                <ul>
+                  <li><a href="/">Home</a></li>
+                  <li><a href="create">Create Post</a></li>
+                  <li><a href="profile">Home</a></li>
+                  <li><a href="about">About</a></li>
+                </ul>
+              </div>
+              <div class="col">
+                <h2>Social Media</h2>
+                
+                <ul>
+                  <li><a href="https://twitter.com/McNobzy" target="_blank">Twitter</a></li>
+                  <li><a href="https://web.facebook.com/nobzy543" target="_blank">Facebook</a></li>
+                  <li><a href="https://github.com/McNobzy" target="_blank">Github</a></li>
+                  <li><a href="https://www.codewars.com/users/McNobzy" target="_blank">Code Wars</a></li>
+                  <li><a href="www.linkedin.com/in/olaoluwa-nwobodo-770860a8">LinkedIn</a></li>
+                </ul>
+              </div>
+              <div class="col copyright">
+                   <p id="copy">Site design / logo © 2023 Olaoluwa Nwobodo</p>
+              </div>
+             </div>
+           </div>
+        </div>
+    <!-- </div> -->
+  </footer>
+
+<script>
+    const blogCreationDate = new Date();
+    document.getElementById('copy').innerHTML = "Site design/logo " + "&copy; " + blogCreationDate.getFullYear() + " Olaoluwa Nwobodo";
+</script>
+</footer>

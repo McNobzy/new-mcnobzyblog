@@ -1,0 +1,77 @@
+{% load static %}
+
+<!-- <link rel="icon" type="image/x-icon" href="/images/favicon.ico"> -->
+<link href="{% static 'icons/Favicons/browser.png' %}" type="image/x-icon" rel="icon">
+
+
+<style>
+    body{
+    background-color: #dbffde;
+  }
+  .navbar{
+    box-shadow: 0.5px 0.5px 2px 1.5px #aaa;
+  }
+ .navbar li{
+  text-transform: uppercase;
+  font-weight: 400;
+ }
+
+ .navbar-brand{
+    font-weight: 900;
+    font-family: 'Monotype Corsiva';
+  }
+
+  .logo{
+    height: 50px;
+  }
+</style>
+
+<nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+      <!-- <a class="navbar-brand" href="/">McNobzyBlog</a> -->
+      <img src="{% static 'icons/png/Black logo - no background.png' %}" alt="McNobzyBlog logo" class="logo">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="/">Home</a>
+          </li>
+          {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="/create">Create Post</a>
+            </li>            
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="/login">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/register">Register</a>
+            </li>
+            {% endif %}
+          </li>
+{% if user.is_authenticated %}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              {{user.username}}
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/profile/{{request.user.username}}">Profile</a></li>
+              
+              <li><a class="dropdown-item" href="/author/{{request.user.id}}/{{request.user.username}}">Posts</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="/logout">Logout</a></li>
+            </ul>
+          </li>
+{% endif %}
+        </ul>
+        <form class="d-flex" role="search" method="POST" action="/search/">
+          {% csrf_token %}
+          <input class="form-control me-2" type="search" placeholder="Search" name="search_bar" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+

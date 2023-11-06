@@ -1,0 +1,77 @@
+.viewPostContainer{
+    min-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-width: 70vw;
+}
+
+.viewPostContainer h1{
+    font-size: 3.5rem;
+    text-align: center;
+    font-weight: 700;
+}
+
+.mcnobzyBlogFooter {
+    position: relative;
+    bottom: 0;
+}
+
+.viewPostButton{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.profileContainer{
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    height: 100vh;
+    padding: 10px;
+}
+
+.outerContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.profileContainerRowLeft{
+    width: 65%;
+    border-right: 2px solid black;
+}
+
+.profileContainerRowRight{
+    width: 35%;
+    /* border: 2px dotted black; */
+    display:flex;
+    flex-direction: column;
+}
+
+.profileContainerRowRightTop{
+    border-bottom: 1px solid black;
+    height: 50%;
+    padding-left: 10px;
+}
+
+.profileContainerRowRightBottom{
+    padding-left: 10px;
+}
+
+.postImageContainer{
+    /* border: 1px solid black; */
+    display: flex;
+    justify-content: space-around;
+}
+
+#post_image{
+    width: 65%;
+    height: 400px;
+    text-align: center;
+    /* width: 200px !important; */
+}
+
+.delete_link{
+    color: red !important;
+}

@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<title>McNobzy</title>
+<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+<style>
+  .searchContainer{
+    height: 100vh;
+    width: 100%;
+  }
+
+  body{
+    background-color: #dbffde;
+  }
+  .navbar{
+    box-shadow: 0.5px 0.5px 2px 1.5px #aaa;
+  }
+
+ .navbar li{
+  text-transform: uppercase;
+  font-weight: 400;
+ }
+
+ .navbar-brand{
+    font-weight: 900;
+    font-family: 'Monotype Corsiva';
+  }
+
+  .posts{
+    /* border: 1px solid #f0f0f0; */
+    /* background-color: #f0f0f0; */
+    margin-bottom: 10px;
+    /* border-bottom: 1px solid black; */
+    /* box-shadow: 0.5px 0.5px 2px 1px #aaa; */
+  }
+
+  .posts h2{
+    text-transform: lowercase;
+    color: black;
+    font-size: 16px;
+  }
+
+  .posts a:hover{
+    color: skyblue;
+  }
+
+    .eachPost{
+      border-bottom: 1px solid black;
+      /* border-top: 1px solid  */
+    }
+</style>
+{% include 'header.html' %}
+<section class="searchContainer">
+  <script href="{% static '/bootstrap.min.js' %}"></script>
+  <h2>Search results for "{{search_term}}"</h2>
+  <div class="container posts">
+    
+    {% for post in posts reversed %}
+    
+        <div class="eachPost">
+            <a href="/post/{{post.id}}" style="text-decoration: none;"><h2>{{post.title}}</h2></a>
+
+            <p>by <a style="text-decoration:none" href="author/{{post.author.id}}/{{post.author.username}}">{{post.author}}</a> at {{post.posted_at}}</p>
+            <p>{{post.body|truncatewords:20}}</p>
+        </div>
+    {% endfor %}
+
+  </div>
+      </section>
+  {% include 'footer.html' %}
+  <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+</html>
+

@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <title>Register on McNobzy's Blog</title>
+  <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'icons/css/font-awesome.min.css' %}" rel="stylesheet" >
+  <link rel="stylesheet" href="{% static 'css/register.css' %}">
+<style>
+
+
+</style>
+<section class="body">
+<div class="login-box">
+  <h2>Register to McNozby's Blog</h2>
+  <form method="POST" action="register">
+    {% csrf_token %}
+    <div class="user-box">
+      <input type="text" name="username" required>
+      <label>Username</label>
+    </div>
+    <div class="user-box">
+      <input type="email" name="email" required>
+      <label>Email</label>
+    </div>
+    <div class="user-box">
+      <input type="password" name="password" required>
+      <label>Password</label>
+    </div>
+    <div class="user-box">
+      <input type="password" name="password2" required>
+      <label>Confirm Password:</label>
+    </div>
+    <div class="user-box">
+    <button type="submit" id="submit">
+       Submit
+    </button>
+  </div>
+  </form>
+</div>
+<!-- <div class="lowerDiv">
+  <h4>Original form found here.<h4>
+    <p>https://codepen.io/soufiane-khalfaoui-hassani/pen/LYpPWda</p>
+    <p>I just chnaged some of the code and centering.</p>
+    <p>Thanks Soufiane Khalfaoui HaSsani for posting this.</p>
+    
+</div> -->
+
+</section>
+{% include 'footer.html' %}
+
+</html>

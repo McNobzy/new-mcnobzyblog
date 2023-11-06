@@ -1,0 +1,34 @@
+{% load static %}
+<html>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+<link href="{% static 'css/mcnobzyBlog.css' %}" rel="stylesheet">
+<title>{{post.title}}</title>
+<style>
+
+</style>
+
+    
+</head>
+   {% include 'header.html' %}
+    
+        <section class="container viewPostContainer">
+            <div>
+                <h1>{{post.title}}</h1>
+            </div>
+            <div class="postImageContainer">
+                {% if post.post_image %}
+                <img src="{{post.post_image.url}}" id="post_image" alt="...">
+                {% endif %}
+            </div>
+                <p>by <a style="text-decoration:none" href="/author/{{post.author.id}}/{{post.author.username}}">{{post.author}}</a> at {{post.posted_at}}</p>
+            <div> 
+                <p>{{post.body}}</p>
+            </div>
+        </section>
+        
+{% include 'footer.html' %}
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+</html>
+

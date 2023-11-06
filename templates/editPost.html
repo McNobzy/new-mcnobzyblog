@@ -1,0 +1,243 @@
+{% load static %}
+<!DOCTYPE html>
+<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+<link href="{% static 'icons/css/font-awesome.min.css' %}" rel="stylesheet" >
+<html>
+<title>Edit Post on McNobzy's Blog</title>
+<style>
+.body {
+  margin:0;
+  padding:0;
+  font-family: sans-serif;
+  background: linear-gradient(#141e30, #243b55);
+  height: 100vh;
+  width: 100%;
+}
+.login-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 500px;
+  height: 600px;
+  padding: 40px;
+  transform: translate(-50%, -50%);
+  background: rgba(0,0,0,.5);
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(0,0,0,.6);
+  border-radius: 10px;
+}
+.login-box h2, h3 {
+  margin: 0 0 30px;
+  padding: 0;
+  color: #fff;
+  text-align: center;
+}
+.login-box .user-box {
+  position: relative;
+}
+.login-box .user-box input {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  background: transparent;
+}
+.login-box .user-box label {
+  position: absolute;
+  top:0;
+  left: 0;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  pointer-events: none;
+  transition: .5s;
+}
+.login-box .user-box input:focus ~ label,
+.login-box .user-box input:valid ~ label {
+  top: -20px;
+  left: 120px;
+  color: #03e9f4;
+  font-size: 12px;
+}
+.login-box form a {
+  position: relative;
+  display: inline-block;
+  padding: 10px 20px;
+  color: #03e9f4;
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: .5s;
+  margin-top: 40px;
+  margin-left: 30%;
+  
+  letter-spacing: 4px
+}
+.login-box a:hover {
+  background: #03e9f4;
+  color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 5px #03e9f4,
+              0 0 25px #03e9f4,
+              0 0 50px #03e9f4,
+              0 0 100px #03e9f4;
+}
+.login-box a span {
+  position: absolute;
+  display: block;
+}
+.login-box a span:nth-child(1) {
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #03e9f4);
+  animation: btn-anim1 1s linear infinite;
+}
+.lowerDiv {
+  color: #ffffff;
+  margin-left: 20px;
+}
+@keyframes btn-anim1 {
+  0% {
+    left: -100%;
+  }
+  50%,100% {
+    left: 100%;
+  }
+}
+.login-box a span:nth-child(2) {
+  top: -100%;
+  right: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, #03e9f4);
+  animation: btn-anim2 1s linear infinite;
+  animation-delay: .25s
+}
+@keyframes btn-anim2 {
+  0% {
+    top: -100%;
+  }
+  50%,100% {
+    top: 100%;
+  }
+}
+.login-box a span:nth-child(3) {
+  bottom: 0;
+  right: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(270deg, transparent, #03e9f4);
+  animation: btn-anim3 1s linear infinite;
+  animation-delay: .5s
+}
+@keyframes btn-anim3 {
+  0% {
+    right: -100%;
+  }
+  50%,100% {
+    right: 100%;
+  }
+}
+.login-box a span:nth-child(4) {
+  bottom: -100%;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(360deg, transparent, #03e9f4);
+  animation: btn-anim4 1s linear infinite;
+  animation-delay: .75s
+}
+@keyframes btn-anim4 {
+  0% {
+    bottom: -100%;
+  }
+  50%,100% {
+    bottom: 100%;
+  }
+}
+.anim-button {
+	top: 50%;
+	left: 30%;
+}
+#submit {
+    border: 0;
+    border-radius: 25px;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: inline-block;
+    font-family: Source Sans Pro,sans-serif;
+    font-size: 18px;
+    font-stretch: normal;
+    font-style: normal;
+    font-weight: 600;
+    height: 50px;
+    letter-spacing: normal;
+    line-height: 1.17;
+    margin: 0;
+    padding-left: 40px;
+    padding-right: 40px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+    align-content: center;
+}
+#submit:hover{
+    background: #141e30;
+    color: #fff;
+}
+#title-body{
+    height:350px;
+    width:350px
+}
+</style>
+
+
+{% include "header.html" %}
+<section class="body">
+{% for message in messages %}
+  <h2>{{message}}</h2>
+{% endfor %}
+<div class="login-box">
+  <h2>Edit Post on <a href="/">McNobzy's Blog</a></h2>
+  <form method="POST" action="/edit/{{post.id}}/">
+    {% csrf_token %}
+    <div class="user-box">
+      <input type="text" name="title" value="{{post.title}}" required="">
+      <label>Title</label>
+    </div>
+    <div class="user-box">
+      <textarea type="text" name="body" id="title-body" required="">{{post.body}}</textarea>
+      <label>Body</label>
+    </div>
+    <select class="form-select" aria-label="Default select example" name="selectedAuthor">
+      <option selected>{{post.author}}</option>
+      {% for user in users %}
+          <option value="{{user.username}}">{{user.username}}</option>
+      {% endfor %}
+  </select>
+    <button type="submit" id="submit">
+       Save Post
+    </button>
+  </form>
+</div>
+</section>
+<!-- <div class="lowerDiv">
+  <h4>Original form found here.<h4>
+    <p>https://codepen.io/soufiane-khalfaoui-hassani/pen/LYpPWda</p>
+    <p>I just chnaged some of the code and centering.</p>
+    <p>Thanks Soufiane Khalfaoui HaSsani for posting this.</p>
+    
+</div> -->
+
+{% include "footer.html" %}
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+</html>
